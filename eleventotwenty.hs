@@ -17,7 +17,18 @@ dropEvery xs n = helper xs 1
 -- (split '(a b c d e f g h i k) 3) => ("abc", "defghik")
 split = flip splitAt
 
---Given two indices, i and k, the slice is the list containing the elements between the i'th and k'th element of the original list (both limits included). Start counting the elements with 1.
+--18 Given two indices, i and k, the slice is the list containing the elements between the i'th and k'th element of the original list (both limits included). Start counting the elements with 1.
 --slice ['a','b','c','d','e','f','g','h','i','k'] 3 7 => "cdefg"
 slice :: [a] -> Int -> Int -> [a]
 slice xs a b = take (b - a + 1) $ drop (a - 1) xs
+
+--19 Rotate a list N places to the left.
+-- rotate ['a','b','c','d','e','f','g','h'] 3 => "defghabc"
+rotate :: [a] -> Int -> [a]
+rotate xs i =  let ft = take i xs
+                   lt = drop i xs
+                   in lt ++ ft
+
+--20 Remove the K'th element from a list.
+-- removeAt 2 "abcd" => ('b',"acd")
+removeAt n xs = (xs !! (n - 1), take (n - 1) xs ++ drop n xs)
