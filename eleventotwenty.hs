@@ -12,3 +12,12 @@ dropEvery xs n = helper xs 1
         helper (x:xs) i
           | i == n  = helper xs 1
           | i /= n  = x:helper xs (i + 1)
+
+-- 17 Split a list into two parts; the length of the first part is given
+-- (split '(a b c d e f g h i k) 3) => ("abc", "defghik")
+split = flip splitAt
+
+--Given two indices, i and k, the slice is the list containing the elements between the i'th and k'th element of the original list (both limits included). Start counting the elements with 1.
+--slice ['a','b','c','d','e','f','g','h','i','k'] 3 7 => "cdefg"
+slice :: [a] -> Int -> Int -> [a]
+slice xs a b = take (b - a + 1) $ drop (a - 1) xs
