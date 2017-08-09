@@ -30,11 +30,15 @@ problem_5 = foldr1 lcm [1..20]
 
 problem_6 = (sum [1..100])^2 - sum (map (^2) [1..100])
 
-problem_7 = primeP 2 0
+problem_7 = primeP 2 0 
 
 primeP :: Int -> Int -> Int
 primeP n 10001 =  n - 1
 primeP n c = if null [ x | x <- [2..n - 1], n `mod`x  == 0]
-                then primeP (n + 1) (c + 1)
+                then primeP (n + 1) (c + 1) 
                 else primeP (n + 1) c
+
+
+
+
 
