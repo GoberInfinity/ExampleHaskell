@@ -49,3 +49,5 @@ consecutive [] xs' = maximum . map (foldl (*) 1 ) . chunksOf 13 $ xs'
 consecutive list@(x:xs) xs' = consecutive (xs) (xs' ++ (head $ chunksOf 13 list))
 
 tolist n = map (\x -> read [x] :: Int) (show n)
+
+problem_9 = [(y,z,w) | w<-[1..500], z<-[1..w], y<-[1..z], (y+z+w)==1000, (y^2)+(z^2)==w^2 ]
