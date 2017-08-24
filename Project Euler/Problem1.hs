@@ -51,3 +51,18 @@ consecutive list@(x:xs) xs' = consecutive (xs) (xs' ++ (head $ chunksOf 13 list)
 tolist n = map (\x -> read [x] :: Int) (show n)
 
 problem_9 = [(y,z,w) | w<-[1..500], z<-[1..w], y<-[1..z], (y+z+w)==1000, (y^2)+(z^2)==w^2 ]
+
+--problem_10 = foldl (\acc x -> if acc < 2000000 then acc + x else acc) 0 $ sieve [2..8000]
+
+
+--Time for processing the answer too high, check: http://www.mathblog.dk/sum-of-all-primes-below-2000000-problem-10/
+primes = 2 : filter (null . tail . primeFactors') [3,5..]
+
+primeFactors' n = factor n primes
+  where
+    factor n (p:ps)
+        | p*p > n        = [n]
+        | n `mod` p == 0 = p : factor (n `div` p) (p:ps)
+        | otherwise      =     factor n ps
+
+problem_10 = sum (takeWhile (< 2000000) primes)
